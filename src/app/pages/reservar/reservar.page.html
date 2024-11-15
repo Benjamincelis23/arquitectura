@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reservar Cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Sección de especialidad -->
+  <ion-item>
+    <ion-label>Especialidad</ion-label>
+    <ion-select [(ngModel)]="especialidad" placeholder="Selecciona una especialidad">
+      <ion-select-option value="medicina-general">Medicina General</ion-select-option>
+      <ion-select-option value="traumatologia">Traumatología</ion-select-option>
+      <ion-select-option value="pediatria">Pediatría</ion-select-option>
+      <ion-select-option value="cardiologia">Cardiología</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Calendario con input de tipo date -->
+  <ion-item>
+    <ion-label>Selecciona la fecha</ion-label>
+    <input id="datepicker" type="date" [(ngModel)]="fechaCita" />
+  </ion-item>
+
+  <!-- Horas disponibles -->
+  <ion-item *ngIf="horasDisponibles.length > 0">
+    <ion-label>Selecciona la hora</ion-label>
+    <ion-select [(ngModel)]="horaCita" placeholder="Selecciona la hora">
+      <ion-select-option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Botón para confirmar la cita -->
+  <ion-button expand="full" (click)="confirmarCita()">Confirmar Cita</ion-button>
+</ion-content>
